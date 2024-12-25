@@ -11,6 +11,8 @@ import {
 import Home from "./pages/Home.jsx";
 import Product from "./pages/product.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
+import LoginPage from "./pages/auth/LoginPage.jsx";
+import SignupPage from "./pages/auth/SignupPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +20,8 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home />} />
       <Route path="/Product" element={<Product />} />
       <Route path="/ProductPage" element={<ProductPage />} />
-
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
     </Route>
   )
 );

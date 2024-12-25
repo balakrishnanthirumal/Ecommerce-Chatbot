@@ -8,7 +8,7 @@ const Navigation = () => {
   const [navigationDropdown, setNavigationDropdown] = useState(false);
   return (
     <>
-      <nav className=" w-full h-[100px] flex  gap-3 justify-between items-center px-10 fixed bg-[#020817] z-50">
+      <nav className=" w-full h-[100px] flex gap-3 justify-between items-center px-10 fixed bg-[#020817] z-50">
         <div>
           <p className="font-extrabold text-[40px] ml-[5rem]">UNITY</p>
         </div>
@@ -28,7 +28,7 @@ const Navigation = () => {
             </p>
             {categoryDropDown && (
               <div
-                className={`absolute w-[150px] bg-[#020817] flex flex-col justify-center  broder border-gray-600 border-[1px] text-white z-50  rounded-md${
+                className={`absolute w-[150px] bg-[#020817] flex flex-col justify-center broder border-gray-600 border-[1px] text-white z-50 rounded-md${
                   categoryDropDown ? "block" : "hidden"
                 } top-[80px] right-[550px]`}
               >
@@ -56,8 +56,8 @@ const Navigation = () => {
             </p>
             {brandDropDown && (
               <div
-                className={`absolute w-[150px] bg-[#020817] flex flex-col justify-center ml-[5px] border-gray-600 border-[1px] text-white z-50  rounded-md${
-                  categoryDropDown ? "block" : "hidden "
+                className={`absolute w-[150px] bg-[#020817] flex flex-col justify-center ml-[5px] border-gray-600 border-[1px] text-white z-50 rounded-md${
+                  brandDropDown ? "block" : "hidden"
                 } top-[80px] right-[410px] px-[5px]`}
               >
                 <div className="hover:bg-gray-500">
@@ -79,19 +79,22 @@ const Navigation = () => {
 
           <div className="flex gap-10 ml-[8rem] items-center">
             <TiShoppingCart color="white" size={35} />
-            <div className="hidden md:flex gap-4 items-center">
-            <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium hidden md:block lg:block">
-              SignIn
-            </button>
-            <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium hidden md:block lg:block">
-              SignUp
-            </button>
+            <Link to={"/login"}>
+              <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium">
+                SignIn
+              </button>
+            </Link>
+            <Link to={"/signup"}>
+              <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium">
+                SignUp
+              </button>
+            </Link>
           </div>
         </div>
-        </div>
+        
 
         <div
-          className=" relative lg:hidden gap-10"
+          className="relative lg:hidden gap-10"
           onClick={() => setNavigationDropdown(!navigationDropdown)}
         >
           <hr className="w-[20px] h-[10px] font-semibold " />
@@ -152,10 +155,10 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col gap-[10px] ml-[20px]">
               <TiShoppingCart color="white" size={35} />
-              <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium w-[100px]">
+              <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium w-[100px]">
                 SignIn
               </button>
-              <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium w-[100px]">
+              <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium w-[100px]">
                 SignUp
               </button>
             </div>
