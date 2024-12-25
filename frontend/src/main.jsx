@@ -9,11 +9,16 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
+import Product from "./pages/product.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
+      <Route path="/Product" element={<Product />} />
+      <Route path="/ProductPage" element={<ProductPage />} />
+
     </Route>
   )
 );

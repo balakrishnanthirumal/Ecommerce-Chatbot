@@ -3,17 +3,17 @@ import { FaStar } from "react-icons/fa";
 
 const ProductModal = () => {
   return (
-    <div className="border border-white w-[300px] h-auto rounded-lg p-[10px]">
+    <div className="border border-white w-[300px] h-auto rounded-lg p-[10px] mx-auto">
       <img
         src="src/assets/images/sectionsImages/Rectangle 49.png"
-        className=""
+        className="w-full h-auto object-cover rounded-md"
         alt=""
       />
-      <div className="flex justify-around items-center mt-[10px]">
-        <div className="text-white text-[30px] w-[60%] font-semibold">
+      <div className="flex justify-between items-center mt-[10px]">
+        <div className="text-white text-[30px] flex-1 font-semibold">
           Cooling Glasses
         </div>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 items-center">
           <FiShoppingBag color="white" size={25} />
           <p className="text-[20px]">15</p>
         </div>

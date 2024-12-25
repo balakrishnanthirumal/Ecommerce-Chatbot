@@ -79,13 +79,15 @@ const Navigation = () => {
 
           <div className="flex gap-10 ml-[8rem] items-center">
             <TiShoppingCart color="white" size={35} />
-            <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium">
+            <div className="hidden md:flex gap-4 items-center">
+            <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium hidden md:block lg:block">
               SignIn
             </button>
-            <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium">
+            <button className="text-black bg-neutral-300 p-[10px] rounded-md font-medium hidden md:block lg:block">
               SignUp
             </button>
           </div>
+        </div>
         </div>
 
         <div
