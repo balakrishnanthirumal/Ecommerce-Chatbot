@@ -79,12 +79,16 @@ const Navigation = () => {
 
           <div className="flex gap-10 ml-[8rem] items-center">
             <TiShoppingCart color="white" size={35} />
-            <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium">
-              SignIn
-            </button>
-            <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium">
-              SignUp
-            </button>
+            <Link to={"/login"}>
+              <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium">
+                SignIn
+              </button>
+            </Link>
+            <Link to={"/signup"}>
+              <button className="text-black bg-neutral-300 p-[10px] rounded-md  font-medium">
+                SignUp
+              </button>
+            </Link>
           </div>
         </div>
 
