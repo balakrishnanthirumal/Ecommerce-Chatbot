@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/authSlice";
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,58 +26,65 @@ const LoginPage = () => {
       })
     );
   };
-  return (
-    <div className="flex justify-between">
-      <div className=" h-[500px] ml-[30px] w-[500px] pt-[10px]">
-        <div className=" text-white font-semibold text-[30px] ml-[50px] mt-[100px]">
-          LOGIN
-        </div>
 
-        <form className="ml-[50px] mt-[50px]" onSubmit={submitHandler}>
-          <label
-            htmlFor="email"
-            className="text-white font-semibold block text-[15px]"
-          >
+  return (
+    <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:items-start lg:space-x-10 p-5 lg:p-10">
+      {/* Form Section */}
+      <div className="w-full lg:w-[500px] max-w-md">
+        <h1 className="text-white font-semibold text-2xl lg:text-3xl text-center lg:text-left">
+          LOGIN
+        </h1>
+
+        <form className="mt-8" onSubmit={submitHandler}>
+          {/* Email Input */}
+          <label htmlFor="email" className="text-white font-semibold text-sm">
             Email
           </label>
           <input
             value={email}
             type="email"
-            className="w-[500px] h-[40px] rounded-md mt-[10px]"
+            className="w-full h-10 lg:h-12 rounded-md mt-2 p-3 text-black"
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
           />
 
+          {/* Password Input */}
           <label
             htmlFor="password"
-            className="text-white font-semibold block text-[15px] mt-[20px]"
+            className="text-white font-semibold text-sm mt-6 block"
           >
             Password
           </label>
           <input
             value={password}
             type="password"
-            className="w-[500px] h-[40px] rounded-md mt-[10px]"
+            className="w-full h-10 lg:h-12 rounded-md mt-2 p-3 text-black"
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
           />
 
-          <button className="bg-pink-700 px-[20px] py-[10px] mt-[20px] rounded-lg">
+          {/* Submit Button */}
+          <button className="p-[10px] bg-pink-700 text-white px-4 py-2 mt-6 rounded-md hover:bg-pink-800 transition">
             Submit
           </button>
         </form>
 
-        <p className="text-white ml-[50px] mt-[20px]">
+        <p className="text-white text-sm text-center lg:text-left mt-4">
           New Customer?{" "}
-          <Link className="text-pink-700 cursor-pointer" to={"/signup"}>
+          <Link className="text-pink-700 hover:text-pink-500" to={"/signup"}>
             SignUp
           </Link>
         </p>
       </div>
 
-      <img
-        src="src/assets/images/signup.png"
-        className="hidden lg:block h-[900px] w-[700px] object-cover"
-        alt=""
-      />
+      {/* Image Section */}
+      <div className="hidden lg:block lg:w-[700px] lg:h-[700px]">
+        <img
+          src="src/assets/images/signup.png"
+          className="w-full h-full object-cover rounded-lg"
+          alt="Login Illustration"
+        />
+      </div>
     </div>
   );
 };

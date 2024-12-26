@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../redux/authSlice";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const SignupPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth.userInfo);
   const navigate = useNavigate();
@@ -20,101 +22,82 @@ const SignupPage = () => {
     }
   }, [navigate, userInfo]);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
+    const { username, email, password, confirmPassword } = formData;
     if (password === confirmPassword) {
-      dispatch(
-        setCredentials({
-          username,
-          email,
-          password,
-          confirmPassword,
-        })
-      );
+      dispatch(setCredentials({ username, email, password }));
     } else {
-      toast.error("Password Mismatched");
+      toast.error("Passwords do not match");
     }
   };
+
   return (
-    <div className="flex justify-between">
-      <div className=" h-[500px] ml-[30px] w-[500px] pt-[10px] mt-[100px]">
-        <div className=" text-white font-semibold text-[30px] ml-[50px]">
+    <div className="flex flex-col lg:flex-row justify-center items-center p-5 lg:justify-between lg:p-10 bg-gray-900 min-h-screen">
+      {/* Form Section */}
+      <div className="lg:w-1/2 w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-md">
+        <h2 className="text-white text-2xl font-semibold text-center mb-6">
           SIGNUP
-        </div>
-
-        <form className="ml-[50px] mt-[50px]" onSubmit={submitHandler}>
-          <label
-            htmlFor="username"
-            className="text-white font-semibold block text-[15px]"
-          >
-            Username
-          </label>
-          <input
-            value={username}
-            type="text"
-            className="w-[500px] h-[40px] rounded-md mt-[10px] mb-[10px]"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-
-          <label
-            htmlFor="email"
-            className="text-white font-semibold block text-[15px]"
-          >
-            Email
-          </label>
-          <input
-            value={email}
-            type="email"
-            className="w-[500px] h-[40px] rounded-md mt-[10px]"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <label
-            htmlFor="password"
-            className="text-white font-semibold block text-[15px] mt-[20px]"
-          >
-            Password
-          </label>
-          <input
-            value={password}
-            type="password"
-            className="w-[500px] h-[40px] rounded-md mt-[10px] mb-[10px]"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label
-            htmlFor="confirmpassword"
-            className="text-white font-semibold block text-[15px]"
-          >
-            Confirm Password
-          </label>
-          <input
-            value={confirmPassword}
-            type="password"
-            className="w-[500px] h-[40px] rounded-md mt-[10px]"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-
+        </h2>
+        <form onSubmit={submitHandler}>
+          {[
+            { label: "Username", type: "text", name: "username" },
+            { label: "Email", type: "email", name: "email" },
+            { label: "Password", type: "password", name: "password" },
+            {
+              label: "Confirm Password",
+              type: "password",
+              name: "confirmPassword",
+            },
+          ].map((field, index) => (
+            <div key={index} className="mb-4">
+              <label
+                htmlFor={field.name}
+                className="text-white font-semibold block mb-2"
+              >
+                {field.label}
+              </label>
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type}
+                value={formData[field.name]}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 rounded-md text-gray-900"
+                required
+              />
+            </div>
+          ))}
           <button
             type="submit"
-            className="bg-pink-700 px-[20px] py-[10px] mt-[20px] rounded-lg"
+            className="p-[10px] bg-pink-700 text-white py-2 rounded-md hover:bg-pink-600 transition"
           >
             Submit
           </button>
         </form>
-
-        <p className="text-white ml-[50px] mt-[20px]">
+        <p className="text-white text-center mt-4">
           Already have an account?{" "}
-          <Link className="text-pink-700 cursor-pointer" to={"/login"}>
+          <Link to="/login" className="text-pink-700 hover:underline">
             Login
           </Link>
         </p>
       </div>
-      <img
-        src="src/assets/images/login.png"
-        className="hidden lg:block h-[900px] w-[700px] object-cover "
-        alt=""
-      />{" "}
+
+      {/* Image Section */}
+      <div className="hidden lg:block lg:w-1/2">
+        <img
+          src="src/assets/images/login.png"
+          alt="Signup Illustration"
+          className="w-full h-auto object-cover rounded-lg"
+        />
+      </div>
     </div>
   );
 };
+
 export default SignupPage;
