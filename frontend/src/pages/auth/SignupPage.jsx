@@ -1,11 +1,40 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "../../redux/authSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
+      dispatch(
+        setCredentials({
+          username,
+          email,
+          password,
+          confirmPassword,
+        })
+      );
+    } else {
+      toast.error("Password Mismatched");
+    }
+  };
   return (
     <div className="flex justify-between">
       <div className=" h-[500px] ml-[30px] w-[500px] pt-[10px] mt-[100px]">
@@ -13,7 +42,7 @@ const SignupPage = () => {
           SIGNUP
         </div>
 
-        <form className="ml-[50px] mt-[50px]">
+        <form className="ml-[50px] mt-[50px]" onSubmit={submitHandler}>
           <label
             htmlFor="username"
             className="text-white font-semibold block text-[15px]"

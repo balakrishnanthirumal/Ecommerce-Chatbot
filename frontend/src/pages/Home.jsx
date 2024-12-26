@@ -154,7 +154,7 @@ const Home = () => {
           </div>
         </div>
 
-        <footer className="flex flex-col items-center justify-center lg:flex-row lg:justify-evenly  md:flex-row md:justify-evenly py-6">
+        <footer className="flex flex-col items-start justify-start  lg:flex-row lg:justify-evenly  md:flex-col  md:justify-evenly py-6 pl-[3rem]">
           <div className="text-white text-[50px] mb-4 lg:mb-0">UNITY</div>
           <div className="lg:ml-8 mb-4 lg:mb-0">
             <div className="text-white text-[20px] mb-[10px]">Company</div>

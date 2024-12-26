@@ -1,5 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   const location = useLocation();
 
@@ -10,6 +13,7 @@ const App = () => {
     <>
       {/* Show Navigation only if the current path is not in the noNavPaths */}
       {!noNavPaths.includes(location.pathname) && <Navigation />}
+      <ToastContainer />
 
       <main className="py-[100px]">
         <Outlet />

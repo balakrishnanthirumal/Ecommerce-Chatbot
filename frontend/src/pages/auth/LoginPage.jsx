@@ -1,9 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router";
-
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { setCredentials } from "../../redux/authSlice";
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.auth.userInfo);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      setCredentials({
+        email,
+        password,
+      })
+    );
+  };
   return (
     <div className="flex justify-between">
       <div className=" h-[500px] ml-[30px] w-[500px] pt-[10px]">
@@ -11,7 +32,7 @@ const LoginPage = () => {
           LOGIN
         </div>
 
-        <form className="ml-[50px] mt-[50px]">
+        <form className="ml-[50px] mt-[50px]" onSubmit={submitHandler}>
           <label
             htmlFor="email"
             className="text-white font-semibold block text-[15px]"
