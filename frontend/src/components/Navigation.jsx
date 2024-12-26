@@ -8,7 +8,7 @@ const Navigation = () => {
   const [navigationDropdown, setNavigationDropdown] = useState(false);
   return (
     <>
-      <nav className=" w-full h-[100px] flex  gap-3 justify-between items-center px-10 fixed bg-[#020817] z-50">
+      <nav className=" w-full h-[100px] flex  justify-between px-10 fixed bg-[#020817] z-50">
         <div>
           <p className="font-extrabold text-[40px] ml-[5rem]">UNITY</p>
         </div>
