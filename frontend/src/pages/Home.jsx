@@ -67,7 +67,7 @@ const Home = () => {
               Featured Products
             </p>
           </div>
-          <div className="flex flex-wrap gap-[50px] mt-[50px] ml-[100px]">
+          <div className="flex flex-wrap gap-[50px] mt-[50px]  w-[80%] mx-auto">
             <ProductModal />
             <ProductModal />
             <ProductModal />

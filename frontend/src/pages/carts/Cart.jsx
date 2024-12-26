@@ -9,7 +9,7 @@ const Cart = () => {
 
         <div className="flex justify-between text-[20px] md:text-[25px] lg:text-[30px] font-semibold mt-[2rem] px-4 md:px-6 lg:px-8">
           <p className="text-black">Quantity</p>
-          <p className="text-black">1 Product</p>
+          <p className="text-black">1</p>
         </div>
         <div className="flex justify-between text-[20px] md:text-[25px] lg:text-[30px] font-semibold mt-[2rem] px-4 md:px-6 lg:px-8">
           <p className="text-black">Total</p>
