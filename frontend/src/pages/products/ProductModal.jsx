@@ -1,6 +1,6 @@
 import { FiShoppingBag } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -50,11 +50,13 @@ const ProductModal = () => {
 
   return (
     <div className="border border-white w-[300px] h-auto rounded-lg p-[10px] mx-auto">
-      <img
-        src="src/assets/images/sectionsImages/Rectangle 49.png"
-        className="w-full h-auto object-cover rounded-md"
-        alt=""
-      />
+      <Link to={"/product/1"}>
+        <img
+          src="src/assets/images/sectionsImages/Rectangle 49.png"
+          className="w-full h-auto object-cover rounded-md"
+          alt=""
+        />
+      </Link>
       <div className="flex justify-between items-center mt-[10px]">
         <div className="text-white text-[30px] flex-1 font-semibold">
           Cooling Glasses
