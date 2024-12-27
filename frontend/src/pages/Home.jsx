@@ -78,12 +78,8 @@ const Home = () => {
               Featured Products
             </p>
           </div>
-<<<<<<< HEAD
           <div className="flex flex-wrap gap-[50px] mt-[50px] ml-[100px]">
             {/* Displaying featured products */}
-=======
-          <div className="flex flex-wrap gap-[50px] mt-[50px]  w-[80%] mx-auto">
->>>>>>> cd90335d3dbb057443e36392365e491184ea48ea
             <ProductModal />
             <ProductModal />
             <ProductModal />
