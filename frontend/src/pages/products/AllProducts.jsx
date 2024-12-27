@@ -1,5 +1,17 @@
+import { useEffect } from "react";
 import ProductModal from "./ProductModal";
+import axios from "axios";
 const AllProducts = () => {
+  const FetchProducts = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/products");
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error.message);
+    }
+  };
+  useEffect(() => FetchProducts, []);
+
   return (
     <div>
       <h1 className="text-center text-white text-[5rem]">OUR PRODUCTS</h1>
