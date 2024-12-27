@@ -3,6 +3,7 @@ from . import db
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
+    # UserMixin provides default implementations for the methods that Flask-Login expects user objects to have
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
@@ -22,6 +23,7 @@ class User(db.Model, UserMixin):
         }
 
 class Product(db.Model):
+    # Define the Product model
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
@@ -52,6 +54,7 @@ class Product(db.Model):
         }
 
 class Order(db.Model):
+    # Define the Order model
     id = db.Column(db.Integer, primary_key=True)
     order = db.Column(db.String(200), nullable=False)
     payment_id = db.Column(db.String(100), nullable=False)
@@ -73,6 +76,7 @@ class Order(db.Model):
         }
 
 class OrderItem(db.Model):
+    # Define the OrderItem model
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
@@ -87,6 +91,7 @@ class OrderItem(db.Model):
         }
 
 class Category(db.Model):
+    # Define the Category model
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -102,6 +107,7 @@ class Category(db.Model):
         }
 
 class Review(db.Model):
+    # Define the Review model
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)

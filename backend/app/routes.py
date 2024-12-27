@@ -8,26 +8,31 @@ main = Blueprint('main', __name__)
 
 @main.route('/products', methods=['GET'])
 def get_products():
+    # Retrieve all products from the database
     products = Product.query.all()
     return jsonify([product.to_dict() for product in products])
 
 @main.route('/product/<int:product_id>', methods=['GET'])
 def get_product(product_id):
+    # Retrieve a specific product by ID
     product = Product.query.get_or_404(product_id)
     return jsonify(product.to_dict())
 
 @main.route('/brand/<string:brand>', methods=['GET'])
 def get_products_by_brand(brand):
+    # Retrieve products by brand
     products = Product.query.filter_by(brand=brand).all()
     return jsonify([product.to_dict() for product in products])
 
 @main.route('/top-products', methods=['GET'])
 def get_top_products():
+    # Retrieve top 10 products by rating
     products = Product.query.order_by(Product.rating.desc()).limit(10).all()
     return jsonify([product.to_dict() for product in products])
 
 @main.route('/add-review/<int:product_id>', methods=['POST'])
 def add_review(product_id):
+    # Add a review for a product
     product = Product.query.get_or_404(product_id)
     data = request.get_json()
     review = Review(user_id=current_user.id, review=data['review'])
@@ -38,6 +43,7 @@ def add_review(product_id):
 
 @main.route('/register', methods=['POST'])
 def register():
+    # Register a new user
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
@@ -65,6 +71,7 @@ def register():
 
 @main.route('/login', methods=['POST'])
 def login():
+    # Login a user
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
@@ -80,6 +87,7 @@ def login():
 
 @main.route('/search', methods=['GET'])
 def search_products():
+    # Search for products by name
     query = request.args.get('query')
     products = Product.query.filter(Product.name.ilike(f'%{query}%')).all()
     return jsonify([product.to_dict() for product in products])
@@ -87,6 +95,7 @@ def search_products():
 @main.route('/purchase/<int:product_id>', methods=['POST'])
 @login_required
 def purchase_product(product_id):
+    # Purchase a product
     product = Product.query.get_or_404(product_id)
     if product.stock > 0:
         product.stock -= 1
@@ -97,6 +106,7 @@ def purchase_product(product_id):
 
 @main.route('/chatbot', methods=['POST'])
 def chatbot():
+    # Handle incoming chatbot messages
     data = request.get_json()
     message = data.get('message')
     
