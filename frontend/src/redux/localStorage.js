@@ -1,6 +1,7 @@
 export const addFavoriteToLocalStorage = (product) => {
   const favorites = getFavoritesFromLocalStorage();
   if (!favorites.some((p) => p._id === product._id)) {
+    // if the product already not present in the favourite then push into the array
     favorites.push(product);
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }

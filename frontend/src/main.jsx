@@ -19,6 +19,7 @@ import Category from "./pages/categories/Category.jsx";
 import Brand from "./pages/brand/Brand.jsx";
 import Cart from "./pages/carts/Cart.jsx";
 
+// Defining routes for the application
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -34,10 +35,13 @@ const router = createBrowserRouter(
   )
 );
 
+// Rendering the app with Redux provider for state management and the router for routing
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      {/* Provide Redux store to the app */}
+      <RouterProvider router={router} />{" "}
+      {/* Provide routing logic to the app */}
     </Provider>
   </StrictMode>
 );

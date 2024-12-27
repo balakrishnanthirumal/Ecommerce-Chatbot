@@ -4,52 +4,59 @@ import { Link, useLocation } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+
+// Import Redux actions for managing favorites
 import {
   addToFavorites,
   removeFromFavorites,
   setFavorites,
 } from "../../redux/favouriteSlice";
 
+// Import helper functions for local storage interaction
 import {
   addFavoriteToLocalStorage,
   getFavoritesFromLocalStorage,
   removeFavoriteFromLocalStorage,
 } from "../../redux/localStorage";
+
 import { toast } from "react-toastify";
 
 const ProductModal = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favourites) || [];
-  const isFavorite = favorites.some((p) => p._id === product._id);
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  const favorites = useSelector((state) => state.favourites) || []; // Get favorite products from Redux store
+  const isFavorite = favorites.some((p) => p._id === product._id); // Check if the product is already a favorite
+  const userInfo = useSelector((state) => state.auth.userInfo); // Get user information from Redux store
 
+  // Load favorites from local storage when the component mounts
   useEffect(() => {
     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
-    dispatch(setFavorites(favoritesFromLocalStorage));
+    dispatch(setFavorites(favoritesFromLocalStorage)); // Dispatch action to update Redux store
   }, []);
-  console.log(userInfo);
+
   const toggleFavorites = () => {
     if (userInfo) {
+      // If user is logged in
       if (isFavorite) {
+        // Remove from favorites if already present
         dispatch(removeFromFavorites(product));
-
-        removeFavoriteFromLocalStorage(product._id);
-        toast.success("Product removed from cart");
+        removeFavoriteFromLocalStorage(product._id); // Update local storage
+        toast.success("Product removed from cart"); // Show success message
       } else {
+        // Add to favorites
         dispatch(addToFavorites(product));
-
-        addFavoriteToLocalStorage(product);
-        toast.success("Product added to cart");
+        addFavoriteToLocalStorage(product); // Update local storage
+        toast.success("Product added to cart"); // Show success message
       }
     } else {
-      navigate("/login");
+      navigate("/login"); // Redirect to login if not logged in
     }
   };
 
   return (
     <div className="border border-white w-[300px] h-auto rounded-lg p-[10px] mx-auto">
+      {/* Product image link */}
       <Link to={"/product/1"}>
         <img
           src="src/assets/images/sectionsImages/Rectangle 49.png"
@@ -57,6 +64,8 @@ const ProductModal = () => {
           alt=""
         />
       </Link>
+
+      {/* Product title and price */}
       <div className="flex justify-between items-center mt-[10px]">
         <div className="text-white text-[30px] flex-1 font-semibold">
           Cooling Glasses
@@ -67,6 +76,7 @@ const ProductModal = () => {
         </div>
       </div>
 
+      {/* Product rating */}
       <div className="flex gap-1 ml-3 mt-3">
         <FaStar color="yellow" />
         <FaStar color="yellow" />
@@ -74,15 +84,19 @@ const ProductModal = () => {
         <FaStar color="yellow" />
       </div>
 
+      {/* Product details */}
       <div className="flex justify-between items-center mt-[10px] p-[10px]">
         <p className="text-[18px] font-medium">Accessories</p>
         <p className="text-[18px] font-medium">Company Nmae</p>
       </div>
 
+      {/* Product pricing */}
       <div className="flex justify-between items-center mt-[5px] p-[10px] ">
         <p className="line-through text-[20px] font-semibold">Rs: 1500</p>
         <p className="text-[25px] font-semibold">Rs: 999</p>
       </div>
+
+      {/* Add to Cart/Remove from Cart button */}
       {location.pathname !== "/cart" && (
         <button
           className="w-[80%]  h-[40px] mx-auto bg-white rounded-lg ml-[30px] mt-[10px]"
@@ -94,4 +108,5 @@ const ProductModal = () => {
     </div>
   );
 };
+
 export default ProductModal;

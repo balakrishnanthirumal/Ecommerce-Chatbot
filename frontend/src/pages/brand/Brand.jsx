@@ -2,12 +2,14 @@ import { useParams } from "react-router";
 import ProductModal from "../products/ProductModal";
 
 const Brand = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Get brand ID from route parameters
 
   return (
     <>
+      {/* Brand Title */}
       <h1 className="text-center text-white text-[5rem]">Explore {id}</h1>
 
+      {/* Sorting Dropdown */}
       <select
         name=""
         id=""
@@ -20,6 +22,7 @@ const Brand = () => {
         <option value="5">Rating: High to Low</option>
       </select>
 
+      {/* Product Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-7">
         <ProductModal />
         <ProductModal />
@@ -30,4 +33,5 @@ const Brand = () => {
     </>
   );
 };
+
 export default Brand;

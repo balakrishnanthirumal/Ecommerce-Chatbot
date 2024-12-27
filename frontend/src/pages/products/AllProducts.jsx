@@ -4,11 +4,7 @@ const AllProducts = () => {
     <div>
       <h1 className="text-center text-white text-[5rem]">OUR PRODUCTS</h1>
 
-      <select
-        name=""
-        id=""
-        className="text-white bg-gray-800 border border-white rounded-md p-2 ml-[4rem] mt-[2rem]"
-      >
+      <select className="text-white bg-gray-800 border border-white rounded-md p-2 ml-[4rem] mt-[2rem]">
         <option value="1">Sort Product</option>
         <option value="2">Price: Low to High</option>
         <option value="3">Price: High to Low</option>

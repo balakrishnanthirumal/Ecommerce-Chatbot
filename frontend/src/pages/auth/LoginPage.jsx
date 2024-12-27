@@ -6,19 +6,25 @@ import { setCredentials } from "../../redux/authSlice";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Getting user information from the Redux global state
   const userInfo = useSelector((state) => state.auth.userInfo);
 
+  // Local state for email and password inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Effect to redirect the user to the homepage if they are already logged in
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/"); // Redirect to the home page
     }
-  }, [navigate, userInfo]);
+  }, [navigate, userInfo]); // Dependencies to trigger the effect when these change
 
+  // Function to handle the form submission
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents the default form submission behavior
+    // Dispatch Redux action to set credentials
     dispatch(
       setCredentials({
         email,
@@ -35,8 +41,8 @@ const LoginPage = () => {
           LOGIN
         </h1>
 
+        {/* Login Form */}
         <form className="mt-8" onSubmit={submitHandler}>
-          {/* Email Input */}
           <label htmlFor="email" className="text-white font-semibold text-sm">
             Email
           </label>
@@ -44,11 +50,10 @@ const LoginPage = () => {
             value={email}
             type="email"
             className="w-full h-10 lg:h-12 rounded-md mt-2 p-3 text-black"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)} // Update email state
             placeholder="Enter your email"
           />
 
-          {/* Password Input */}
           <label
             htmlFor="password"
             className="text-white font-semibold text-sm mt-6 block"
@@ -59,7 +64,7 @@ const LoginPage = () => {
             value={password}
             type="password"
             className="w-full h-10 lg:h-12 rounded-md mt-2 p-3 text-black"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)} // Update password state
             placeholder="Enter your password"
           />
 
@@ -69,6 +74,7 @@ const LoginPage = () => {
           </button>
         </form>
 
+        {/* Navigation to Signup Page */}
         <p className="text-white text-sm text-center lg:text-left mt-4">
           New Customer?{" "}
           <Link className="text-pink-700 hover:text-pink-500" to={"/signup"}>
@@ -77,7 +83,7 @@ const LoginPage = () => {
         </p>
       </div>
 
-      {/* Image Section */}
+      {/* Illustration Section for Large Screens */}
       <div className="hidden lg:block lg:w-[700px] lg:h-[700px]">
         <img
           src="src/assets/images/signup.png"

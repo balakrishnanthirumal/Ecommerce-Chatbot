@@ -4,9 +4,12 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const Home = () => {
   return (
     <>
+      {/* Hero Section with header and image */}
       <div className="h-auto">
         <section className="bg-gray-800 w-[85%] lg:h-[500px] mt-[50px] mx-auto rounded-lg lg:flex lg:items-center lg:gap-[100px] justify-center md:flex md:h-[300px]:md:gap-6 sm:[30px] ">
-          <div className="flex flex-col  sm: w-[50%] sm: mx-auto sm:items-center">
+          {/* Text content */}
+          <div className="flex flex-col sm: w-[50%] sm: mx-auto sm:items-center">
+            {/* Slogan text */}
             <div className="text-black font-extrabold text-[3rem] bg-white w-[200px]">
               Let'S
             </div>
@@ -20,70 +23,86 @@ const Home = () => {
             <div className="text-white font-extrabold text-[3rem]">Items.</div>
           </div>
 
+          {/* Image on the right */}
           <img
             src="src/assets/images/sectionsImages/home-img.png"
-            className="bg-contain bg-no-repeat lg:w-[500px] lg:h-[500px] md:w-[300px] md:h-[300px]  rounded-lg"
-            alt=""
+            className="bg-contain bg-no-repeat lg:w-[500px] lg:h-[500px] md:w-[300px] md:h-[300px] rounded-lg"
+            alt="Hero Image"
           />
         </section>
 
-        <main className="bg-[#EBD96B]  h-auto mx-auto mt-[80px] rounded-lg flex items-center lg:gap-[50px]  flex-wrap gap-[50px] justify-center py-[10px]">
+        {/* Brands Section */}
+        <main className="bg-[#EBD96B] h-auto mx-auto mt-[80px] rounded-lg flex items-center lg:gap-[50px]  flex-wrap gap-[50px] justify-center py-[10px]">
+          {/* Display brand logos */}
           <img
             src="src/assets/logos/Rectangle 36.png"
             className="bg-transparent"
-            alt=""
+            alt="Brand 1"
           />
           <img
             src="src/assets/logos/Rectangle 38.png"
             className="bg-transparent"
-            alt=""
+            alt="Brand 2"
           />
           <img
             src="src/assets/logos/Rectangle 41.png"
             className="bg-transparent"
-            alt=""
+            alt="Brand 3"
           />
           <img
             src="src/assets/logos/Rectangle 42.png"
             className="bg-transparent"
-            alt=""
+            alt="Brand 4"
           />
           <img
             src="src/assets/logos/Rectangle 43.png"
             className="bg-transparent"
-            alt=""
+            alt="Brand 5"
           />
           <img
             src="src/assets/logos/Rectangle 44.png"
             className="bg-transparent"
-            alt=""
+            alt="Brand 6"
           />
-          <img src="src/assets/logos/Rectangle 45.png" className="" alt="" />
+          <img
+            src="src/assets/logos/Rectangle 45.png"
+            className=""
+            alt="Brand 7"
+          />
         </main>
 
+        {/* Featured Products Section */}
         <aside className="mt-[100px] lg:ml-[100px] ">
           <div className=" text-[#E6C744] font-extrabold text-[50px]">
             <p className="md:text-[30px] lg:text-[50px] text-[30px] text-center lg:text-left md:text-left">
               Featured Products
             </p>
           </div>
+<<<<<<< HEAD
           <div className="flex flex-wrap gap-[50px] mt-[50px] ml-[100px]">
+            {/* Displaying featured products */}
+=======
+          <div className="flex flex-wrap gap-[50px] mt-[50px]  w-[80%] mx-auto">
+>>>>>>> cd90335d3dbb057443e36392365e491184ea48ea
             <ProductModal />
             <ProductModal />
             <ProductModal />
           </div>
         </aside>
 
+        {/* New Arrivals Section */}
         <div className="text-[50px] font-semibold text-white ml-[100px] mt-[50px]">
           New Arrivals
         </div>
 
+        {/* Category images */}
         <article className="flex flex-col lg:flex-row rounded-lg gap-[30px] mt-[50px] ml-[100px] lg:ml-[0]">
+          {/* Product Category 1 */}
           <div className="flex-1 rounded-lg">
             <img
               src="src/assets/images/sectionsImages/Rectangle 20.png"
               className="w-full h-[600px] object-cover"
-              alt=""
+              alt="Category 1"
             />
             <div className="flex items-center justify-between bg-[#020817] p-[20px]">
               <div>
@@ -96,11 +115,12 @@ const Home = () => {
             </div>
           </div>
 
+          {/* Product Category 2 */}
           <div className="flex-1 rounded-lg">
             <img
               src="src/assets/images/sectionsImages/Rectangle 22.png"
               className="w-full h-[600px] object-cover"
-              alt=""
+              alt="Category 2"
             />
             <div className="flex items-center justify-between bg-[#020817] p-[20px]">
               <div>
@@ -113,11 +133,12 @@ const Home = () => {
             </div>
           </div>
 
+          {/* Product Category 3 */}
           <div className="flex-1 rounded-lg w-full">
             <img
               src="src/assets/images/sectionsImages/Rectangle 21.png"
               className="w-full lg:h-[600px] object-cover"
-              alt=""
+              alt="Category 3"
             />
             <div className="flex items-center justify-between bg-[#020817] p-[20px]">
               <div>
@@ -131,13 +152,15 @@ const Home = () => {
           </div>
         </article>
 
+        {/* Special Promotion Section */}
         <div className="bg-[#E0C340] w-full h-[500px] mt-[30px] flex items-center  gap-[100px] rounded-lg">
           <img
             src="src/assets/images/sectionsImages/Rectangle 50.png"
-            alt=""
+            alt="Promotion Image"
             className="oj-object-cover hidden  lg:h-full lg:block rounded-lg"
           />
 
+          {/* Text and button for promotion */}
           <div className="flex flex-col  justify-center w-[80%] mx-auto rounded-lg md:items-center md:align-middle sm:align-middle">
             <p className="text-[50px] bg-white w-[250px] h-[80px] text-black text-center font-extrabold">
               PAYDAY
@@ -177,10 +200,15 @@ const Home = () => {
               Terms & Conditions
             </p>
             <p className="text-[15px] text-gray-300 mb-[5px]">Privacy Policy</p>
+            <p className="text-[15px] text-gray-300 mb-[5px]">
+              Return & Refund
+            </p>
+            <p className="text-[15px] text-gray-300 mb-[5px]">Website Access</p>
           </div>
         </footer>
       </div>
     </>
   );
 };
+
 export default Home;
