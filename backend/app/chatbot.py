@@ -5,6 +5,8 @@ class SalesChatbot:
         self.backend_url = backend_url
 
     def handle_message(self, message):
+        """Handles incoming messages and returns a response"""
+
         if "search" in message.lower():
             query = message.split("search", 1)[1].strip()
             return self.search_product(query)
@@ -17,9 +19,12 @@ class SalesChatbot:
         elif message.lower() == "hello":
             return "Hi there! How can I help you today?"
         else:
+            # Default response for unrecognized messages
             return "Sorry, I didn't understand that. You can ask me to search for products, get product details, or purchase a product."
 
     def search_product(self, query):
+
+        #searches for products based on the query
         response = requests.get(f'{self.backend_url}/search', params={'query': query})
         products = response.json()
         if products:
@@ -28,6 +33,8 @@ class SalesChatbot:
             return "No products found."
 
     def get_product(self, product_id):
+
+        #Retrieves details of a specific product by ID
         response = requests.get(f'{self.backend_url}/product/{product_id}')
         if response.status_code == 200:
             product = response.json()
@@ -36,6 +43,8 @@ class SalesChatbot:
             return "Product not found."
 
     def purchase_product(self, product_id):
+
+        #Attempts to purchase a product by ID
         response = requests.post(f'{self.backend_url}/purchase/{product_id}')
         if response.status_code == 200:
             return "Purchase successful!"

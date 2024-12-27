@@ -2,4 +2,6 @@ Flask
 Flask-SQLAlchemy
 Flask-Bcrypt
 Flask-Login
+Flask-Migrate
+Flask-CORS
 python-dotenv

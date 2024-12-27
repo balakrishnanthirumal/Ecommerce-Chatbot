@@ -7,7 +7,6 @@ ecommerce-backend/
 │   ├── chatbot.py
 │   └── database.py
 ├── migrations/
-├── .env
 ├── config.py
 ├── run.py
 └── requirements.txt
