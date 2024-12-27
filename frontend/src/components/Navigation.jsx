@@ -54,13 +54,23 @@ const Navigation = () => {
               >
                 {/* Category items */}
                 <div className="hover:bg-gray-500">
-                  <p className="font-semibold text-center text-[15px]">Bag</p>
+                  <Link to={"/category/Bag"}>
+                    <p className="font-semibold text-center text-[15px]">Bag</p>
+                  </Link>
                 </div>
                 <div className="hover:bg-gray-500">
-                  <p className="font-semibold text-center text-[15px]">Shoe</p>
+                  <Link to={"/category/Shoe"}>
+                    <p className="font-semibold text-center text-[15px]">
+                      Shoe
+                    </p>
+                  </Link>
                 </div>
                 <div className="hover:bg-gray-500">
-                  <p className="font-semibold text-center text-[15px]">Shirt</p>
+                  <Link to={"/category/Shirt"}>
+                    <p className="font-semibold text-center text-[15px]">
+                      Shirt
+                    </p>
+                  </Link>
                 </div>
               </div>
             )}
@@ -82,17 +92,25 @@ const Navigation = () => {
               >
                 {/* Brand items */}
                 <div className="hover:bg-gray-500">
-                  <p className="font-semibold text-center text-[15px]">
-                    Ussain Polo
-                  </p>
+                  <Link to={"/brand/UssainPolo"}>
+                    <p className="font-semibold text-center text-[15px]">
+                      Ussain Polo
+                    </p>
+                  </Link>
                 </div>
                 <div className="hover:bg-gray-500">
-                  <p className="font-semibold text-center text-[15px]">
-                    Basics
-                  </p>
+                  <Link to={"/brand/Basics"}>
+                    <p className="font-semibold text-center text-[15px]">
+                      Basics
+                    </p>
+                  </Link>
                 </div>
                 <div className="hover:bg-gray-500">
-                  <p className="font-semibold text-center text-[15px]">Arrow</p>
+                  <Link to={"/Arrow"}>
+                    <p className="font-semibold text-center text-[15px]">
+                      Arrow
+                    </p>
+                  </Link>
                 </div>
               </div>
             )}
@@ -184,10 +202,14 @@ const Navigation = () => {
               {categoryDropDown && (
                 <div className="flex flex-col gap-2">
                   <div>
-                    <p className="font-semibold text-[15px]">Bag</p>
+                    <p className="font-semibold text-[15px] cursor-pointer">
+                      Bag
+                    </p>
                   </div>
                   <div>
-                    <p className="font-semibold text-[15px]">Shoe</p>
+                    <p className="font-semibold text-[15px] cursor-pointer ">
+                      Shoe
+                    </p>
                   </div>
                   <div>
                     <p className="font-semibold text-[15px]">Thakkali</p>
@@ -204,13 +226,19 @@ const Navigation = () => {
               {brandDropDown && (
                 <div className="flex flex-col gap-2">
                   <div>
-                    <p className="font-semibold text-[15px]">Bag</p>
+                    <p className="font-semibold text-[15px] cursor-pointer">
+                      Bag
+                    </p>
                   </div>
                   <div>
-                    <p className="font-semibold text-[15px]">Shoe</p>
+                    <p className="font-semibold text-[15px] cursor-pointer">
+                      Shoe
+                    </p>
                   </div>
                   <div>
-                    <p className="font-semibold text-[15px]">Thakkali</p>
+                    <p className="font-semibold text-[15px] cursor-pointer">
+                      Thakkali
+                    </p>
                   </div>
                 </div>
               )}
