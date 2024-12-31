@@ -22,6 +22,8 @@ class User(db.Model, UserMixin):
             'is_admin': self.is_admin
         }
 
+import random
+
 class Product(db.Model):
     # Define the Product model
     id = db.Column(db.Integer, primary_key=True)
@@ -35,8 +37,20 @@ class Product(db.Model):
     review_count = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    company_name = db.Column(db.String(100), nullable=False, default='Unknown Company')  
     reviews = db.relationship('Review', backref='product', lazy=True)
     order_items = db.relationship('OrderItem', backref='product', lazy=True)
+
+    def __init__(self, **kwargs):
+        super(Product, self).__init__(**kwargs)
+        self.company_name = self.generate_random_company_name() 
+
+    def generate_random_company_name(self):
+        company_names = [
+            "Tech Solutions", "Innovatech", "Global Goods", "Elite Enterprises", 
+            "NextGen Industries", "Premier Products", "Visionary Ventures"
+        ]
+        return random.choice(company_names)
 
     def to_dict(self):
         return {
@@ -50,8 +64,10 @@ class Product(db.Model):
             'rating': self.rating,
             'review_count': self.review_count,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'company_name': self.company_name 
         }
+
 
 class Order(db.Model):
     # Define the Order model
