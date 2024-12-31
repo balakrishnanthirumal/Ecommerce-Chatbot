@@ -1,20 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getFavoritesFromLocalStorage } from "./localStorage";
 
 // Create a slice for handling cart products
 const favoriteSlice = createSlice({
   name: "favorites", // Name of the slice
-  initialState: [], // Initial state is an empty array for favorite products
+  initialState: getFavoritesFromLocalStorage(), // Initial state is an empty array for favorite products
   reducers: {
     // Reducer to add a product to favorites if it's not already added
     addToFavorites: (state, action) => {
-      if (!state.some((product) => product._id === action.payload._id)) {
+      if (!state.some((product) => product.id === action.payload.id)) {
         state.push(action.payload); // Add the product to favorites
       }
     },
 
     // Reducer to remove a product from favorites
     removeFromFavorites: (state, action) => {
-      return state.filter((product) => product._id !== action.payload._id); // Filter out the removed product
+      return state.filter((product) => product.id !== action.payload.id); // Filter out the removed product
     },
 
     // Reducer to set the list of favorites

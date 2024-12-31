@@ -1,6 +1,13 @@
+import { useSelector } from "react-redux";
 import ProductModal from "../products/ProductModal";
+import { toast } from "react-toastify";
 
 const Cart = () => {
+  const favorites = useSelector((state) => state.favourites);
+  const totalPrice = favorites.reduce(
+    (total, product) => total + product.price,
+    0
+  );
   return (
     <div className="flex flex-col items-center px-4">
       {/* Order Summary Section */}
@@ -13,22 +20,21 @@ const Cart = () => {
         {/* Quantity Section */}
         <div className="flex justify-between text-[20px] md:text-[25px] lg:text-[30px] font-semibold mt-[2rem] px-4 md:px-6 lg:px-8">
           <p className="text-black">Quantity</p>
-          <p className="text-black">1</p>
+          <p className="text-black">{favorites.length}</p>
         </div>
 
         {/* Total Section */}
         <div className="flex justify-between text-[20px] md:text-[25px] lg:text-[30px] font-semibold mt-[2rem] px-4 md:px-6 lg:px-8">
           <p className="text-black">Total</p>
-          <p className="text-black">Rs: 1000</p>
+          <p className="text-black">Rs: {Math.floor(totalPrice)}</p>
         </div>
       </div>
 
       {/* Product List Section */}
       <div className="flex flex-col md:flex-row lg:flex-row items-center gap-4 mt-[3rem]">
-        <ProductModal />
-        <ProductModal />
-        <ProductModal />
-        <ProductModal />
+        {favorites.map((product) => (
+          <ProductModal product={product} />
+        ))}
       </div>
     </div>
   );

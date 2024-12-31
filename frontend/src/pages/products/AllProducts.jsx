@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductModal from "./ProductModal";
 import axios from "axios";
 const AllProducts = () => {
+  const [data, setData] = useState();
+
   const FetchProducts = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:5000/products");
       console.log(response.data);
+      setData(response.data);
     } catch (error) {
       console.error("Error fetching products:", error.message);
     }
@@ -23,13 +26,11 @@ const AllProducts = () => {
         <option value="4">Rating:Low to High</option>
         <option value="5">Rating: High to Low</option>
       </select>
-
+      {console.log(data)}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-7">
-        <ProductModal />
-        <ProductModal />
-        <ProductModal />
-        <ProductModal />
-        <ProductModal />
+        {data?.map((product) => (
+          <ProductModal product={product} />
+        ))}
       </div>
     </div>
   );

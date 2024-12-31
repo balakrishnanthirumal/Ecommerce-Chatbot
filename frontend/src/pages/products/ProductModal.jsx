@@ -21,12 +21,13 @@ import {
 
 import { toast } from "react-toastify";
 
-const ProductModal = () => {
+const ProductModal = ({ product }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favourites) || []; // Get favorite products from Redux store
-  const isFavorite = favorites.some((p) => p._id === product._id); // Check if the product is already a favorite
+  const isFavorite = favorites.some((p) => p.id === product?.id); // Check if the product is already a favorite
+  console.log(isFavorite);
   const userInfo = useSelector((state) => state.auth.userInfo); // Get user information from Redux store
 
   // Load favorites from local storage when the component mounts
@@ -41,7 +42,7 @@ const ProductModal = () => {
       if (isFavorite) {
         // Remove from favorites if already present
         dispatch(removeFromFavorites(product));
-        removeFavoriteFromLocalStorage(product._id); // Update local storage
+        removeFavoriteFromLocalStorage(product.id); // Update local storage
         toast.success("Product removed from cart"); // Show success message
       } else {
         // Add to favorites
@@ -59,7 +60,7 @@ const ProductModal = () => {
       {/* Product image link */}
       <Link to={"/product/1"}>
         <img
-          src="src/assets/images/sectionsImages/Rectangle 49.png"
+          src={product?.image}
           className="w-full h-auto object-cover rounded-md"
           alt=""
         />
@@ -68,7 +69,7 @@ const ProductModal = () => {
       {/* Product title and price */}
       <div className="flex justify-between items-center mt-[10px]">
         <div className="text-white text-[30px] flex-1 font-semibold">
-          Cooling Glasses
+          {product?.name}
         </div>
         <div className="flex gap-2 items-center">
           <FiShoppingBag color="white" size={25} />
@@ -78,33 +79,35 @@ const ProductModal = () => {
 
       {/* Product rating */}
       <div className="flex gap-1 ml-3 mt-3">
-        <FaStar color="yellow" />
-        <FaStar color="yellow" />
-        <FaStar color="yellow" />
-        <FaStar color="yellow" />
+        {Array.from({ length: Math.floor(product?.ratings) }).map(
+          (_, index) => (
+            <FaStar key={index} className="text-yellow-500" />
+          )
+        )}
       </div>
 
       {/* Product details */}
       <div className="flex justify-between items-center mt-[10px] p-[10px]">
-        <p className="text-[18px] font-medium">Accessories</p>
+        <p className="text-[18px] font-medium"></p>
         <p className="text-[18px] font-medium">Company Nmae</p>
       </div>
 
       {/* Product pricing */}
       <div className="flex justify-between items-center mt-[5px] p-[10px] ">
         <p className="line-through text-[20px] font-semibold">Rs: 1500</p>
-        <p className="text-[25px] font-semibold">Rs: 999</p>
+        <p className="text-[25px] font-semibold">
+          Rs: {Math.floor(product?.price)}
+        </p>
       </div>
 
       {/* Add to Cart/Remove from Cart button */}
-      {location.pathname !== "/cart" && (
-        <button
-          className="w-[80%]  h-[40px] mx-auto bg-white rounded-lg ml-[30px] mt-[10px]"
-          onClick={toggleFavorites}
-        >
-          {isFavorite ? "Remove from Cart" : "Add to cart"}
-        </button>
-      )}
+
+      <button
+        className="w-[80%]  h-[40px] mx-auto bg-white rounded-lg ml-[30px] mt-[10px]"
+        onClick={toggleFavorites}
+      >
+        {isFavorite ? "Remove from Cart" : "Add to cart"}
+      </button>
     </div>
   );
 };
