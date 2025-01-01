@@ -37,7 +37,7 @@ class Product(db.Model):
     review_count = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
-    company_name = db.Column(db.String(100), nullable=False, default='Unknown Company')  
+    company_name = db.Column(db.String(100), nullable=False)  # Remove the default value here
     reviews = db.relationship('Review', backref='product', lazy=True)
     order_items = db.relationship('OrderItem', backref='product', lazy=True)
 
