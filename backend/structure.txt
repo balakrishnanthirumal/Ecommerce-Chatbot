@@ -1,0 +1,12 @@
+ecommerce-backend/
+│
+├── app/
+│   ├── __init__.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── chatbot.py
+│   └── database.py
+├── migrations/
+├── config.py
+├── run.py
+└── requirements.txt
