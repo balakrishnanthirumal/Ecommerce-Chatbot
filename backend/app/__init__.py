@@ -23,7 +23,7 @@ def create_app():
     app.config.from_object('config.Config')
 
     # enable CORS for the specified origin
-    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+    CORS(app, resources={r"/*": {"origins": "https://ecommerce-chatbot-frontend.onrender.com"}})
 
     # initialize extensions
     db.init_app(app)
