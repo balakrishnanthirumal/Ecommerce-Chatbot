@@ -84,12 +84,13 @@ const ProductModal = ({ product }) => {
             <FaStar key={index} className="text-yellow-500" />
           )
         )}
+        <span className="text-white">{product.review_count}</span>
       </div>
 
       {/* Product details */}
       <div className="flex justify-between items-center mt-[10px] p-[10px]">
         <p className="text-[18px] font-medium"></p>
-        <p className="text-[18px] font-medium">Company Nmae</p>
+        <p className="text-[18px] font-medium">{product.company_name}</p>
       </div>
 
       {/* Product pricing */}
